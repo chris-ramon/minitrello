@@ -71,9 +71,12 @@ if (Meteor.is_client) {
             results = $this.sortable("toArray") ,
             _id = $this.attr('id') ,
             _state = _id.substring(0,_id.length-1) ;
-              Meteor.flush();
+              
+              // Meteor.setTimeout(function () {
               for (var i = 0; i < results.length; i++)
                 BoardCollection.update({_id: results[i]}, {$set: {priority: i + 1, state: _state}});
+              // console.log(ui.item.find("input[type='hidden']"))
+              // }, 300);
               // ui.item.remove();
         },
         receive: function(event, ui){
