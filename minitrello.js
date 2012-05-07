@@ -37,11 +37,15 @@ if (Meteor.is_client) {
     "click .icon-remove" : function(e){
       var _task = $(e.target).parent().parent();
         _id = _task.attr('id');
-        console.log(_task.parent())
+        _ul = _task.parent();
+        _ul_id = _ul.attr("id");
+        _state = _ul_id.substring( 0, _ul_id.length-1 );
         BoardCollection.remove(_id);
-        // sortable();
+        Meteor.flush();
+        tasks = _ul.sortable("toArray");
+        for (var i = 0; i < tasks.length; i++)
+          BoardCollection.update({_id: tasks[i]}, {$set: {priority: i + 1, state: _state}});
     }
-
   };
 
   // Listen for each list when elements are sortabling.
