@@ -1,0 +1,84 @@
+<head>
+	<title>minitrello</title>
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-31489704-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+</head>
+<body>
+	<h1>MiniTrello!</h1>
+	<a href="https://github.com/chris-ramon/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://salesfliphq.com/images/fork-me.png?1284118828"></a>
+	{{> board}}
+</body>
+
+<template name="board">
+	<header>
+		<div class="well form-search">
+			<input type="text" id="new-todo-input" placeholder="new todo ... ">
+			<button id="new-todo" class="btn btn-primary">Add</button>
+		</div>
+	</header>
+
+	<section class="container-fluid">
+		<div class="row">
+			<div class="span4">
+				<h2>Todo</h2>
+				<ul id="todos" class="ui-sortable">
+				{{#each todos }}
+					{{> todo}}
+				{{/each }}
+				</ul>
+			</div>
+
+			<div class="span4">
+				<h2>Doing</h2>
+				<ul id="doings">
+					{{#each doings }}
+						{{> doing}}
+					{{/each }}
+				</ul>
+			</div>
+
+			<div class="span4">
+				<h2>Done</h2>
+				<ul id="dones">
+					{{#each dones}}
+						{{> done}}
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</section>
+</template>
+
+<template name="todo">
+	<li id="{{ _id }}" data-color="{{ color }}" class="ui-state-default">{{ task }} 
+		<a href="#"><i class="icon-remove"></i></a>
+		<p><em>Priority: {{ priority }}</em></p>
+	</li>
+
+</template>
+
+<template name="doing">
+	<li id="{{ _id }}" data-color="{{ color }}" class="ui-state-default">{{ task }}
+		<a href="#"><i class="icon-remove"></i></a>
+		<p><em>Priority: {{ priority }}</em></p>
+	</li>
+</template>
+
+<template name="done">
+	<li id="{{ _id }}" data-color="{{ color }}" class="ui-state-default">{{ task }}
+		<a href="#"><i class="icon-remove"></i></a>
+		<p><em>Priority: {{ priority }}</em></p>
+	</li>
+</template>

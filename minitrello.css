@@ -1,0 +1,105 @@
+/* CSS declarations go here */
+h1{
+margin:15px auto;
+}
+h1, header{
+text-align: center;
+}
+.ui-state-highlight{ 
+height: 40px; 
+line-height: 1.2em;
+}
+.rotateleft{
+-webkit-transform:rotate(-6deg);
+-moz-transform:rotate(-6deg);
+}
+.rotateright{
+-webkit-transform:rotate(6deg);
+-moz-transform:rotate(6deg);	
+}
+ul > li{
+cursor: move;
+list-style:none;
+margin-bottom:10px;
+padding:4px 10px;
+border-radius:7px;
+}
+ul > li a{
+margin-top:5px;
+float:right;
+transform: scale(1.2,1.2);
+-ms-transform: scale(1.2,1.2); /* IE 9 */
+-webkit-transform: scale(1.2,1.2); /* Safari and Chrome */
+-o-transform: scale(1.2,1.2); /* Opera */
+-moz-transform: scale(1.2,1.2); /* Firefox */
+}
+ul > li a:hover{
+transform: scale(1.5,1.5);
+-ms-transform: scale(1.5,1.5); /* IE 9 */
+-webkit-transform: scale(1.5,1.5); /* Safari and Chrome */
+-o-transform: scale(1.5,1.5); /* Opera */
+-moz-transform: scale(1.5,1.5); /* Firefox */
+}
+ul > li:hover{
+-webkit-transform:rotate(-3deg);
+-moz-transform:rotate(-3deg);
+-ms-transform:rotate(-3deg);
+-o-transform:rotate(-3deg);
+-moz-box-shadow: 8px 8px 5px #666666;
+-webkit-box-shadow: 8px 8px 5px #666666;
+box-shadow: 8px 8px 5px #666666;
+}
+li[data-color="0"]{
+background:white;
+border: 3px solid #CFF09E;
+}
+
+li[data-color="1"]{
+background:white;
+border: 3px solid #774F38;
+}
+
+li[data-color="2"]{
+background:white;
+border: 3px solid #E08E79;
+}
+
+li[data-color="3"]{
+background:white;
+border: 3px solid #F1D4AF;
+}
+
+li[data-color="4"]{
+background:white;
+border: 3px solid #F38630;
+}
+
+li[data-color="5"]{
+background:white;
+border: 3px solid #69D2E7;
+}
+
+li[data-color="6"]{
+background:white;
+border: 3px solid #C5E0DC;
+}
+
+li[data-color="7"]{
+background:white;
+border: 3px solid #ECE5CE;
+}
+
+li[data-color="8"]{
+background:white;
+border: 3px solid #E0E4CC;
+}
+
+li[data-color="9"]{
+background:white;
+border: 3px solid #ECE5CE;
+}
+
+li[data-color="10"]{
+background:white;
+border: 3px solid #FA6900;
+}
