@@ -45,6 +45,7 @@ if (Meteor.is_client) {
         tasks = _ul.sortable("toArray");
         for (var i = 0; i < tasks.length; i++)
           BoardCollection.update({_id: tasks[i]}, {$set: {priority: i + 1, state: _state}});
+        return false;
     }
   };
 
@@ -53,34 +54,35 @@ if (Meteor.is_client) {
     $("#new-todo-input").focus();
     var list = ["#todos", "#doings", "#dones"];
 
-    function connectWith(currentList){
-      var new_list = $.map(list, function(element, index){ if (element != currentList) return element; });
+    function connectWith(currentElement){
+      var new_list = $.map(list, function(element, index){ if (element != currentElement) return element; });
       return new_list.join();
     }
 
-    function sortable () {
+      
+    for (var i = 0; i < list.length; i++) {
 
-      for (var i = 0; i < list.length; i++) {
-        var options = {
-          placeholder: "ui-state-highlight" ,
-          connectWith: connectWith(list[i]) ,
-          // events.
-          update: function(event, ui){
-            var $this = $(this) ,
-              results = $this.sortable("toArray") ,
-              _id = $this.attr('id') ,
-              _state = _id.substring(0,_id.length-1) ;
-            for (var i = 0; i < results.length; i++)
-              BoardCollection.update({_id: results[i]}, {$set: {priority: i + 1, state: _state}});
-          }
-        }; // finish options
+      var options = {
+        placeholder: "ui-state-highlight" ,
+        connectWith: connectWith(list[i]) ,
+        // events.
+        update: function(event, ui){
+          var $this = $(this) ,
+            results = $this.sortable("toArray") ,
+            _id = $this.attr('id') ,
+            _state = _id.substring(0,_id.length-1) ;
+              Meteor.flush();
+              for (var i = 0; i < results.length; i++)
+                BoardCollection.update({_id: results[i]}, {$set: {priority: i + 1, state: _state}});
+              // ui.item.remove();
+        },
+        receive: function(event, ui){
+        }
+      }; // finish options
 
-        $(list[i]).sortable(options);
-      };
-
-    }
-
-    sortable();
+      $(list[i]).sortable(options);
+    
+    };
 
   });
 }

@@ -1,4 +1,7 @@
 /* CSS declarations go here */
+/**{
+border: 1px solid orange;
+}*/
 h1{
 margin:15px auto;
 }
@@ -16,6 +19,9 @@ line-height: 1.2em;
 .rotateright{
 -webkit-transform:rotate(6deg);
 -moz-transform:rotate(6deg);	
+}
+ul{
+padding:5px;
 }
 ul > li{
 cursor: move;

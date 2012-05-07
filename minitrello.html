@@ -1,7 +1,7 @@
 <head>
 	<title>minitrello</title>
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-	// <script type="text/javascript">
+	<script type="text/javascript">
 
 	//   var _gaq = _gaq || [];
 	//   _gaq.push(['_setAccount', 'UA-31489704-1']);
@@ -65,6 +65,8 @@
 	<li id="{{ _id }}" data-color="{{ color }}" class="ui-state-default">{{ task }} 
 		<a href="#"><i class="icon-remove"></i></a>
 		<p><em>Priority: {{ priority }}</em></p>
+		<p>{{ _id }}</p>
+		<p>{{ state }}</p>
 	</li>
 
 </template>
@@ -73,6 +75,8 @@
 	<li id="{{ _id }}" data-color="{{ color }}" class="ui-state-default">{{ task }}
 		<a href="#"><i class="icon-remove"></i></a>
 		<p><em>Priority: {{ priority }}</em></p>
+		<p>{{ _id }}</p>
+		<p>{{ state }}</p>
 	</li>
 </template>
 
@@ -80,5 +84,7 @@
 	<li id="{{ _id }}" data-color="{{ color }}" class="ui-state-default">{{ task }}
 		<a href="#"><i class="icon-remove"></i></a>
 		<p><em>Priority: {{ priority }}</em></p>
+		<p>{{ _id }}</p>
+		<p>{{ state }}</p>
 	</li>
 </template>
