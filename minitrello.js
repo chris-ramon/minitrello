@@ -34,7 +34,7 @@ if (Meteor.is_client) {
       if (event.keyCode == 13){
         var _task = $("#new-todo-input").val(),
           total_tasks = totalDocuments({state: "todo"}) ;
-        insertDocument({task : _task, state: "todo", priority: total_tasks + 1, color: Math.floor(Math.random()*10)});
+          if(_task != ""){ insertDocument({task : _task, state: "todo", priority: total_tasks + 1, color: Math.floor(Math.random()*10)});}
         $("#new-todo-input").val("");
       }
     }
@@ -59,8 +59,29 @@ if (Meteor.is_client) {
     },
     // edit task
     "click .icon-edit" : function(e){
-      var _task = $(this);
-
+      var _task = this ,
+        _id = _task._id, 
+        _task_wrapper = $("#"+_id) ,
+        _task_text_wrapper = _task_wrapper.find("p:eq(0)"),
+        _current_text = _task_text_wrapper.text();
+        _text = $("<textarea></textarea>", {
+          id : "#updating" ,
+          value: _current_text 
+        });
+        _button = $("<button></button>", {
+          id : "save_button" ,
+          class : "btn" ,
+          text: "Save"
+        });
+        _task_text_wrapper.html(_text);
+        _task_text_wrapper.after(_button);
+        var textarea = _task_text_wrapper.find("textarea");
+        textarea.focus().val(_current_text);
+        _task_wrapper.addClass("disabledhover");
+        _button.on("click", function(){
+          var data = textarea.val();
+          BoardCollection.update(_id, {$set: {task: data} });
+        });
       return false;
     }
   };

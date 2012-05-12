@@ -84,7 +84,8 @@
 </template>
 
 <template name="task">
-	<li id="{{ _id }}" data-color="{{ color }}" data-state="{{ state }}"  class="ui-state-default">{{ task }} 
+	<li id="{{ _id }}" data-color="{{ color }}" data-state="{{ state }}"  class="ui-state-default">
+		<p>{{ task }} </p>
 		{{> options}}
 		<p><em>Priority: {{ priority }}</em></p>
 	</li>

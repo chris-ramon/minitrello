@@ -9,7 +9,7 @@ h1, header{
 text-align: center;
 }
 .ui-state-highlight{ 
-height: 40px; 
+height: 70px; 
 line-height: 1.2em;
 }
 .rotateleft{
@@ -20,8 +20,11 @@ line-height: 1.2em;
 -webkit-transform:rotate(6deg);
 -moz-transform:rotate(6deg);	
 }
+#save_button{
+margin-bottom:14px;	
+}
 ul{
-padding:5px;
+padding:10px;
 }
 ul > li{
 cursor: move;
@@ -58,23 +61,7 @@ transform: scale(1.1,1.1);
 -o-transform: scale(1.1,1.1); 
 -moz-transform: scale(1.1,1.1); 
 }
-/*ul > li a{
-margin-top:5px;
-float:right;
-transform: scale(1.2,1.2);
--ms-transform: scale(1.2,1.2); 
--webkit-transform: scale(1.2,1.2); 
--o-transform: scale(1.2,1.2); 
--moz-transform: scale(1.2,1.2); 
-}
-ul > li a:hover{
-transform: scale(1.5,1.5);
--ms-transform: scale(1.5,1.5); 
--webkit-transform: scale(1.5,1.5); 
--o-transform: scale(1.5,1.5);
--moz-transform: scale(1.5,1.5); 
-}*/
-ul > li:hover{
+ul > li:not(.disabledhover):hover{
 -webkit-transform:rotate(-3deg);
 -moz-transform:rotate(-3deg);
 -ms-transform:rotate(-3deg);
