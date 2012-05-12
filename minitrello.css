@@ -30,22 +30,50 @@ margin-bottom:10px;
 padding:4px 10px;
 border-radius:7px;
 }
-ul > li a{
+.options{
+float:right;
+margin: 4px 0px 0px 0px;
+}
+.options a:nth-of-type(1){
+margin-right:7px;
+}
+.options i{
+transform: scale(1.2,1.2);
+-ms-transform: scale(1.2,1.2); 
+-webkit-transform: scale(1.2,1.2); 
+-o-transform: scale(1.2,1.2); 
+-moz-transform: scale(1.2,1.2); 
+}
+.options i:hover{
+transform: scale(1.5,1.5);
+-ms-transform: scale(1.5,1.5); 
+-webkit-transform: scale(1.5,1.5); 
+-o-transform: scale(1.5,1.5);
+-moz-transform: scale(1.5,1.5); 
+}
+.options i:active{
+transform: scale(1.1,1.1);
+-ms-transform: scale(1.1,1.1); 
+-webkit-transform: scale(1.1,1.1); 
+-o-transform: scale(1.1,1.1); 
+-moz-transform: scale(1.1,1.1); 
+}
+/*ul > li a{
 margin-top:5px;
 float:right;
 transform: scale(1.2,1.2);
--ms-transform: scale(1.2,1.2); /* IE 9 */
--webkit-transform: scale(1.2,1.2); /* Safari and Chrome */
--o-transform: scale(1.2,1.2); /* Opera */
--moz-transform: scale(1.2,1.2); /* Firefox */
+-ms-transform: scale(1.2,1.2); 
+-webkit-transform: scale(1.2,1.2); 
+-o-transform: scale(1.2,1.2); 
+-moz-transform: scale(1.2,1.2); 
 }
 ul > li a:hover{
 transform: scale(1.5,1.5);
--ms-transform: scale(1.5,1.5); /* IE 9 */
--webkit-transform: scale(1.5,1.5); /* Safari and Chrome */
--o-transform: scale(1.5,1.5); /* Opera */
--moz-transform: scale(1.5,1.5); /* Firefox */
-}
+-ms-transform: scale(1.5,1.5); 
+-webkit-transform: scale(1.5,1.5); 
+-o-transform: scale(1.5,1.5);
+-moz-transform: scale(1.5,1.5); 
+}*/
 ul > li:hover{
 -webkit-transform:rotate(-3deg);
 -moz-transform:rotate(-3deg);

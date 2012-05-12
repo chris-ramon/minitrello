@@ -13,11 +13,11 @@
 	//     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	//   })();
 
-	// </script>
+	</script>
 </head>
 <body>
 	<h1>MiniTrello!</h1>
-	<a href="https://github.com/chris-ramon/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://salesfliphq.com/images/fork-me.png?1284118828"></a>
+	<a href="https://github.com/chris-ramon/minitrello"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://salesfliphq.com/images/fork-me.png?1284118828"></a>
 	{{> board}}
 </body>
 
@@ -27,6 +27,7 @@
 			<input type="text" id="new-todo-input" placeholder="new todo ... ">
 			<button id="new-todo" class="btn btn-primary">Add</button>
 		</div>
+		{{> edit}}
 	</header>
 
 	<section class="container-fluid">
@@ -59,33 +60,44 @@
 			</div>
 		</div>
 	</section>
+
+</template>
+
+<template name="edit">
+	<div class="well" style="display:none">
+		<label for="task"><h3>Editing ...</h3></label>
+		<textarea name="task" class="input-xlarge">{{ task }}</textarea>
+		<button id="new-todo" class="btn">Save</button>
+	</div>
 </template>
 
 <template name="todo">
-	<li id="{{ _id }}" data-color="{{ color }}" class="ui-state-default">{{ task }} 
-		<a href="#"><i class="icon-remove"></i></a>
-		<p><em>Priority: {{ priority }}</em></p>
-		<p>{{ _id }}</p>
-		<p>{{ state }}</p>
-		<input type="hidden" value="{{ state }}">
-	</li>
-
+	{{> task}}
 </template>
 
 <template name="doing">
-	<li id="{{ _id }}" data-color="{{ color }}" class="ui-state-default">{{ task }}
-		<a href="#"><i class="icon-remove"></i></a>
-		<p><em>Priority: {{ priority }}</em></p>
-		<p>{{ _id }}</p>
-		<p>{{ state }}</p>
-	</li>
+	{{> task}}
 </template>
 
 <template name="done">
-	<li id="{{ _id }}" data-color="{{ color }}" class="ui-state-default">{{ task }}
-		<a href="#"><i class="icon-remove"></i></a>
+	{{> task}}
+</template>
+
+<template name="task">
+	<li id="{{ _id }}" data-color="{{ color }}" data-state="{{ state }}"  class="ui-state-default">{{ task }} 
+		{{> options}}
 		<p><em>Priority: {{ priority }}</em></p>
-		<p>{{ _id }}</p>
-		<p>{{ state }}</p>
 	</li>
 </template>
+
+<template name="options">
+	<div class="options">
+		<a href="#"><i class="icon-edit"></i></a>
+		<a href="#"><i class="icon-remove"></i></a>
+	</div>
+</template>
+
+
+
+
+

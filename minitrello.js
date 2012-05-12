@@ -11,6 +11,9 @@ if (Meteor.is_client) {
   Template.board.dones = function(){
     return BoardCollection.find({state: "done"}, {sort: {priority: 1, task: 1}});
   };
+  Template.edit.task =function(){
+    return "nothing to edit ...";
+  };
 
   function insertDocument (data) {
     BoardCollection.insert(data);
@@ -21,6 +24,7 @@ if (Meteor.is_client) {
 
   // Event listeners for template board.
   Template.board.events = {
+    // new task - todo
     "click button#new-todo" : function(){
       var _task = $("#new-todo-input").val(),
           total_tasks = totalDocuments({state: "todo"}) ;
@@ -33,9 +37,14 @@ if (Meteor.is_client) {
         insertDocument({task : _task, state: "todo", priority: total_tasks + 1, color: Math.floor(Math.random()*10)});
         $("#new-todo-input").val("");
       }
-    },
+    }
+  };
+
+  // Event listeners for template options.
+  Template.options.events = {
+    // remove task
     "click .icon-remove" : function(e){
-      var _task = $(e.target).parent().parent();
+      var _task = $(e.target).parent().parent().parent();
         _id = _task.attr('id');
         _ul = _task.parent();
         _ul_id = _ul.attr("id");
@@ -45,7 +54,14 @@ if (Meteor.is_client) {
         tasks = _ul.sortable("toArray");
         for (var i = 0; i < tasks.length; i++)
           BoardCollection.update({_id: tasks[i]}, {$set: {priority: i + 1, state: _state}});
+        console.log(_task);
         return false;
+    },
+    // edit task
+    "click .icon-edit" : function(e){
+      var _task = $(this);
+
+      return false;
     }
   };
 
@@ -57,8 +73,7 @@ if (Meteor.is_client) {
     function connectWith(currentElement){
       var new_list = $.map(list, function(element, index){ if (element != currentElement) return element; });
       return new_list.join();
-    }
-
+    };
       
     for (var i = 0; i < list.length; i++) {
 
@@ -71,16 +86,16 @@ if (Meteor.is_client) {
             results = $this.sortable("toArray") ,
             _id = $this.attr('id') ,
             _state = _id.substring(0,_id.length-1) ;
-              
-              // Meteor.setTimeout(function () {
-              for (var i = 0; i < results.length; i++)
-                BoardCollection.update({_id: results[i]}, {$set: {priority: i + 1, state: _state}});
-              // console.log(ui.item.find("input[type='hidden']"))
-              // }, 300);
-              // ui.item.remove();
+            for (var i = 0; i < results.length; i++)
+              BoardCollection.update({_id: results[i]}, {$set: {priority: i + 1, state: _state}});
         },
-        receive: function(event, ui){
-        }
+        stop: function(event, ui) {
+          var _ul_parent = ui.item.parent() ,
+            _id = _ul_parent.attr("id"),
+            _state = _id.substring(0,_id.length-1);
+            // delete the copy created by sortable plugin.
+            $("#"+_id).find("li[data-state!="+_state+"]").remove();
+        },
       }; // finish options
 
       $(list[i]).sortable(options);
