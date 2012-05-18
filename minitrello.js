@@ -54,7 +54,6 @@ if (Meteor.is_client) {
         tasks = _ul.sortable("toArray");
         for (var i = 0; i < tasks.length; i++)
           BoardCollection.update({_id: tasks[i]}, {$set: {priority: i + 1, state: _state}});
-        console.log(_task);
         return false;
     },
     // edit task
@@ -74,7 +73,7 @@ if (Meteor.is_client) {
           text: "Save"
         });
         _task_text_wrapper.html(_text);
-        _task_text_wrapper.after(_button);
+        if ( (_task_text_wrapper.parent().find("button").length) < 1){ _task_text_wrapper.after(_button); }
         var textarea = _task_text_wrapper.find("textarea");
         textarea.focus().val(_current_text);
         _task_wrapper.addClass("disabledhover");
@@ -130,16 +129,15 @@ if (Meteor.is_server) {
   Meteor.startup(function () {
     // Fill the board collection with documents if is empty.
     if (BoardCollection.find().count() === 0) {
-      var tasks = ["PSD File",
-                   "Python Scripts",
-                   "Update Mongo Collection"];
+      var tasks = [{task : "PSD Logo", state: "todo"},
+                   {task : "Python Scripts", state: "todo"},
+                   {task : "Update Mongo Collections", state: "todo"},
+                   {task : "AI Vectors Graphics", state:"todo"},
+                   {task : "Logo in Photoshop", state:"todo" }];
       for (var i = 0; i < tasks.length; i++)
-        BoardCollection.insert({task: tasks[i], state:"todo" , date: (new Date()).toLocaleDateString(), priority: i + 1, color: i + 1 });
-      BoardCollection.insert({task: "AI Vectors Graphics", state:"doing" , date: (new Date()).toLocaleDateString(), priority: 1, color: 10 });
-      BoardCollection.insert({task: "Logo in Photoshop", state:"doing" , date: (new Date()).toLocaleDateString(), priority: 2, color: 9 });
-      BoardCollection.insert({task: "Perl Scripts", state:"done" , date: (new Date()).toLocaleDateString(), priority: 1, color: 8 });
-      BoardCollection.insert({task: "Ruby BDD Scripts", state:"done" , date: (new Date()).toLocaleDateString(), priority: 2, color: 7 });
-      BoardCollection.insert({task: "Django Views", state:"done" , date: (new Date()).toLocaleDateString(), priority: 3, color: 6 });
+        BoardCollection.insert({task: tasks[i].task , state:tasks[i].state , date: (new Date()).toLocaleDateString(), priority: i + 1, color: i + 1 });
+      BoardCollection.insert({task: "Django Views" , state:"doing" , date: (new Date()).toLocaleDateString(), priority: 1, color: 7 });
+      BoardCollection.insert({task: "Balsamiq Mockups" , state:"done" , date: (new Date()).toLocaleDateString(), priority: 1, color: 9 });
     }
   });
 }
