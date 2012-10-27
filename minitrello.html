@@ -1,24 +1,22 @@
 <head>
-	<title>minitrello</title>
+	<title>Minitrello - Kanban Board inspired in Trello.com</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-31489704-1']);
+	  _gaq.push(['_trackPageview']);
 
-	//   var _gaq = _gaq || [];
-	//   _gaq.push(['_setAccount', 'UA-31489704-1']);
-	//   _gaq.push(['_trackPageview']);
-
-	//   (function() {
-	//     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	//     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	//     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	//   })();
-
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
 	</script>
 </head>
 <body>
 	<h1>MiniTrello!</h1>
-	<a href="https://github.com/chris-ramon/minitrello"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://salesfliphq.com/images/fork-me.png?1284118828"></a>
+	<a href="https://github.com/chris-ramon/minitrello" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://salesfliphq.com/images/fork-me.png?1284118828"></a>
 	{{> board}}
 </body>
 
@@ -26,7 +24,10 @@
 	<header>
 		<div class="well form-search">
 			<input type="text" id="new-todo-input" placeholder="new todo ... ">
-			<button id="new-todo" class="btn btn-primary">Add</button>
+			<button id="new-todo" class="btn btn-primary">Add</button><br><br>
+			<p>Inspired in : <a href="http://trello.com" target="_blank">Trello</a></p>
+			<p><i class="icon-move"></i> drag and drop the tasks.</p>
+			<p>Follow: <a href="https://twitter.com/#!/cramonn">@cramonn</a></p>
 		</div>
 		{{> edit}}
 	</header>
