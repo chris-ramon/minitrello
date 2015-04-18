@@ -2,7 +2,13 @@ BoardCollection = new Mongo.Collection("todo");
 BoardCollection.allow({
   'insert': function() {
     return true;
-  }
+  },
+  'update': function() {
+    return true;
+  },
+  'remove': function() {
+    return true;
+  },
 });
 
 if (Meteor.isClient) {
@@ -88,6 +94,8 @@ if (Meteor.isClient) {
         _button.on("click", function(){
           var data = textarea.val();
           BoardCollection.update(_id, {$set: {task: data} });
+          _text.remove();
+          _button.remove();
         });
       return false;
     }
