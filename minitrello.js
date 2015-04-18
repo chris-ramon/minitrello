@@ -1,20 +1,28 @@
-BoardCollection = new Meteor.Collection("todo");
+BoardCollection = new Mongo.Collection("todo");
+BoardCollection.allow({
+  'insert': function() {
+    return true;
+  }
+});
 
-if (Meteor.is_client) {
+if (Meteor.isClient) {
   // Passing variables to the templates.
-  Template.board.todos = function(){
-    return BoardCollection.find({state: "todo"}, {sort: {priority: 1, task: 1}});
-  };
-  Template.board.doings = function(){
-    return BoardCollection.find({state: "doing"}, {sort: {priority: 1, task: 1}});
-  };
-  Template.board.dones = function(){
-    return BoardCollection.find({state: "done"}, {sort: {priority: 1, task: 1}});
-  };
-  Template.edit.task =function(){
-    return "nothing to edit ...";
-  };
-
+  Template.board.helpers({
+    todos: function() {
+      return BoardCollection.find({state: "todo"}, {sort: {priority: 1, task: 1}});
+    },
+    doings: function() {
+      return BoardCollection.find({state: "doing"}, {sort: {priority: 1, task: 1}});
+    },
+    dones: function() {
+      return BoardCollection.find({state: "done"}, {sort: {priority: 1, task: 1}});
+    }
+  });
+  Template.edit.helpers({
+    task: function() {
+      return "nothing to edit ...";
+    }
+  });
   function insertDocument (data) {
     BoardCollection.insert(data);
   };
@@ -59,13 +67,13 @@ if (Meteor.is_client) {
     // edit task
     "click .icon-edit" : function(e){
       var _task = this ,
-        _id = _task._id, 
+        _id = _task._id,
         _task_wrapper = $("#"+_id) ,
         _task_text_wrapper = _task_wrapper.find("p:eq(0)"),
         _current_text = _task_text_wrapper.text();
         _text = $("<textarea></textarea>", {
           id : "#updating" ,
-          value: _current_text 
+          value: _current_text
         });
         _button = $("<button></button>", {
           id : "save_button" ,
@@ -94,7 +102,7 @@ if (Meteor.is_client) {
       var new_list = $.map(list, function(element, index){ if (element != currentElement) return element; });
       return new_list.join();
     };
-      
+
     for (var i = 0; i < list.length; i++) {
 
       var options = {
@@ -119,13 +127,13 @@ if (Meteor.is_client) {
       }; // finish options
 
       $(list[i]).sortable(options);
-    
+
     };
 
   });
 }
 
-if (Meteor.is_server) {
+if (Meteor.isServer) {
   Meteor.startup(function () {
     // Fill the board collection with documents if is empty.
     if (BoardCollection.find().count() === 0) {
